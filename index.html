@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .curve-line {
-            height: 8px; /* Adjust height for the curve */
-            background: linear-gradient(to right, #e7155b, #000); /* Gradient for the curve */
+            height: 8px; 
+            background: linear-gradient(to right, #e7155b, #000); 
             position: relative;
            
-            margin: 0; /* Remove any margin */
-            z-index: 1; /* Ensure it appears above the section below */
+            margin: 0; 
+            z-index: 1; 
         }
         
         .trending {
@@ -28,20 +28,20 @@
         }
         .trending-movies {
             display: flex;
-            gap: 25px; /* Adjust the spacing between movie cards */
-            overflow-x: auto; /* Allows horizontal scrolling */
+            gap: 25px; 
+            overflow-x: auto; 
         }
         .movie-card {
             background-color: #333;
             border-radius: 8px;
             padding: 10px;
-            min-width: 150px; /* Minimum width for movie cards */
+            min-width: 150px; 
             position: relative;
         }
         .movie-card img {
             border-radius: 8px;
-            width: 100%; /* Ensures the image fills the card */
-            height: 100%; /* Maintains aspect ratio */
+            width: 100%; 
+            height: 100%; 
         }
         .movie-rank {
             position: absolute;
@@ -98,7 +98,7 @@
     
     <div class="curve-line"></div>
     
-    <!-- there is spce between bg img secction and trending section remove that space and make section like first bg img section then seperate line then trending section -->
+   
     <div class="trending">
         <h2 class="trending-title">Trending Now</h2>
         <div class="trending-movies">
@@ -255,7 +255,7 @@
         .reasonbox {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; /* Evenly distributes space */
+            justify-content: space-between; 
         }
     
         .f1 {
@@ -268,7 +268,7 @@
             min-width: 200px; /* Ensures the boxes do not get too small */
             display: flex;
             flex-direction: column; /* Stack content vertically */
-            justify-content: space-between; /* Evenly distributes space between elements */
+            justify-content: space-between; 
         }
     
         .reason-title {
@@ -286,7 +286,7 @@
         .image-container {
             display: flex;
             justify-content: center;
-            margin-top: auto; /* Pushes the icon to the bottom */
+            margin-top: auto; 
         }
     
         .reason-image {
@@ -315,7 +315,7 @@
     
         @media (max-width: 480px) {
             .f1 {
-                flex: 1 1 100%; /* One tile per row on very small screens */
+                flex: 1 1 100%; 
             }
     
             .reason-title {
@@ -332,7 +332,7 @@
         }
 
         #faq {
-    background-color: #000; /* Black background */
+    background-color: #000;
     padding: 20px;
     border-radius: 8px;
 
@@ -353,35 +353,35 @@
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 10px;
-    position: relative; /* To position the toggle button */
+    position: relative; 
     transition: background-color 0.3s; /* Transition for hover effect */
 }
 
 .faq-item:hover {
-    background-color: #222; /* Darker background on hover */
+    background-color: #222; 
 }
 
 .faq-item h3 {
     font-size: 18px;
-    color: white; /* Light blue color for questions */
-    cursor: pointer; /* Change cursor to pointer for better UX */
-    display: flex; /* Flex to align text and toggle */
-    justify-content: space-between; /* Space between title and toggle */
-    align-items: center; /* Center vertically */
-    margin: 0; /* Remove default margin */
+    color: white; 
+    cursor: pointer; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 0; 
 }
 
 .faq-item .toggle {
-    font-size: 20px; /* Font size for the toggle sign */
-    color: white; /* Color for the toggle sign */
-    transition: transform 0.3s; /* Smooth transition for toggle sign */
+    font-size: 20px; 
+    color: white; 
+    transition: transform 0.3s; 
 }
 
 .faq-item .answer {
-    display: none; /* Hide answers by default */
+    display: none; 
     font-size: 14px;
-    color: #ccc; /* Light gray color for answers */
-    margin-top: 10px; /* Space above answer */
+    color: #ccc; 
+    margin-top: 10px; 
 }
 
 footer {
