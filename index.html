@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .curve-line {
+            height: 8px; /* Adjust height for the curve */
+            background: linear-gradient(to right, #e7155b, #000); /* Gradient for the curve */
+            position: relative;
+           
+            margin: 0; /* Remove any margin */
+            z-index: 1; /* Ensure it appears above the section below */
+        }
+        
+        .trending {
+            padding: 50px;
+            background-color: #000;
+            color: white;
+            
+          
+        }
+        .trending-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .trending-movies {
+            display: flex;
+            gap: 25px; /* Adjust the spacing between movie cards */
+            overflow-x: auto; /* Allows horizontal scrolling */
+        }
+        .movie-card {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 10px;
+            min-width: 150px; /* Minimum width for movie cards */
+            position: relative;
+        }
+        .movie-card img {
+            border-radius: 8px;
+            width: 100%; /* Ensures the image fills the card */
+            height: 100%; /* Maintains aspect ratio */
+        }
+        .movie-rank {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .recently-added {
+            font-size: 12px;
+            margin-top: 0px;
+        }
+        body{
+         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;   
+        }
+
+    </style>
+</head>
+<body >
+
+    <div class="top" style="background-image: url(images/bg.jpg); height: 90vh; background-size: cover; background-position: center;">
+        <div class="op" style="background-color: rgba(0, 0, 0, 0.7); height: 90vh;">
+            <nav class="navbar" style="height: 10vh; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+                <img src="images/logo.svg" style="height: 6vh; z-index: 10;">
+                <div class="nav2" style="display: flex; gap: 20px; align-items: center;">
+                    <select name="lang" id="1" style="height: 5vh; padding: 5px; background-color: #7d7878fb; z-index: 10; border-radius: 4px;">
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                    </select>
+                    <button style="background-color: red; height: 5vh; padding: 5px 15px; border: none; color: white; z-index: 10; cursor: pointer;">Sign-in</button>
+                </div>
+            </nav>
+            
+            <div class="content" style="height: 50vh; width: 50vw; justify-content: center; align-items: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="heading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 15vh; z-index: 10;">
+                    <h1 style="color: white; font-size: 2.5rem; font-family: 'Martel Sans'; margin-bottom: 0; font-weight: bold;">Unlimited movies,</h1>
+                    <h1 style="color: white; font-size: 2.5rem; font-family: 'Martel Sans'; margin-bottom: 0; font-weight: bold;">TV shows and more</h1>
+                </div>
+                
+                <div class="subheading" style="height: 35vh; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <b><h3 style="color: white; margin-bottom: 0; font-size: 1.25rem;">Starts at ₹149. Cancel at any time.</h3><br></b>
+                    <b><h5 style="color: white; margin-top: 0; font-size: 1rem;">Ready to watch? Enter your email to create or restart your membership.</h5></b>
+                    <div class="element" style="display: flex; justify-content: center;">
+                        <input type="email" name="email" id="20" placeholder="Enter email here" style="height: 5vh; width: 20vw; background-color: rgba(0, 0, 0, 0.5); color: white; padding-left: 10px; border: 1px solid white; border-radius: 5px;">
+                        <button style="height: 50px; width: 10vw; background-color: red; border-color: black; box-sizing: 2px; margin-left: 5px; border-radius: 5px; color: white;">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="curve-line"></div>
+    
+    <!-- there is spce between bg img secction and trending section remove that space and make section like first bg img section then seperate line then trending section -->
+    <div class="trending">
+        <h2 class="trending-title">Trending Now</h2>
+        <div class="trending-movies">
+            <div class="movie-card">
+                <div class="movie-rank">1</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABRI6G-YI41kxtUQ_Q7Zbv2hDMmaE6UO55X8-4MeSYoCmguFroUSLc6D3e2LpBqDv0xvH8vMC_uBJW1yNZH2PiNJhVGWcBKcgGVcsyZpP_oeVvbdBYD4LYMD52UrTWWdW6ibdJ_d9x5s5T9CZF76OrfKCCXHjUHkauask_ikoPuKd9E30OiIxNnvutvKd_FxT9YLe9Rd1lJceznPKoB0vBtZ1iI0UfRme4Stq9DuRIyr3Jx-YVbaWjDxvPjr90ihIfKXKoOxGNOFHQOv9JumyvyJAWdKvs4tNlqj7RABPczxWHAjg_WtVvyEmY7mmb2QKDaIHnebpl1NDHttdN1xsAoQ.webp?r=4e6 " alt="The Greatest of All Time">
+       
+            </div>
+            <div class="movie-card">
+                <div class="movie-rank">2</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABekOyOEc0IMYCBzL1U12H-gMP39eTC0zZ0CawiEZfsVVEVfuzAXMWo1_7HVifGiVAezM9MLKJ-zMYF5vU2NZj1GAFKpJhPsJ9wD8412kiexuLATsJwlbCipYevBS8u1H_C0GtTn9c_dBQCtGd1H7CsnPPEeeLBX_VOpjX3-MufmSG3wQycmQXMFQVYJT4Pz8SM98uF8rVn1JhdfcmuopEFfxoojgtxEMvhFWitJ_62GUbqydRNfqfpurMuRLitUusP3nmdQGJ0G_I8ryAjgF4Ur7F2WKNrSALVuW3SarpyVl0Q4rv9U2IwglhY0wk_AGVwhJMiC1SNYaoofog4iInvE.webp?r=6b0" alt="LAJH">
+               
+            </div>
+            <div class="movie-card">
+                <div class="movie-rank">3</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABeNW_c9U9xz-Et1ZyU6zq1A1X3Dpuw90kY4WTTX0QqT4Rob8rlDd4Mf17LnqNX6gM74q5aFjQYrm6Qh_Q_EKy8nIXrmKqcPcmdg0zLxXZgSdtu2nUMRa6PxDDGR8M7oGuD3ujQNmDWC9aCnW3THvp4e-LQv46PNAEJwsV1pFD7CQAoFEHu_eOUHvgH2XQxsXjb4QU-pjKFKRs7nRS5N7eFOL9Slo2nWZqW5fB6jvhFJq7PPEu_qMYmS4EkjitCOpa5E8GmbfZwv4jbRGahoc1J4QLX8UuG2CzftTm8Fxw-VmMxsx-MPTM23iLhefxi2FaaLNT-JAAjzYeeEh6eS2l7I.webp?r=7a3 " alt="Sanivaram">
+             
+            </div>
+            <div class="movie-card">
+                <div class="movie-rank">4</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABYtQQuyzfpH21gbzUiC47JPBO9fctekBa91MAuaqBkJX2hq5AgldT2woVYvCfeJXURRTmZRK-nEXI2W4yyEDtLTe4fzrzyXx_kNLFCoxHcjNTWIfW-VktlZZl6wGsbL4EYFYmg2-H93j4GnJLAFUvRUfEDB3a3dAHDCvEgqkIMDRBzwI4Ggp3PQvNd-7XSbl5e8NoOY0OWJ7UFGMEnLrUlUj1r5EPNjTkk52iU3SMPdnCFX7WjFsujHobj_ljq6YIqSFOgZtCuiaXx4gTwqZm4hSGkHCbQWe7rg2WfMFjr15ua7ZpEPSTCJovK-zYgxX3hwvapFTIv4p1YCnWWtV66M9vXD1uwhDm5anxVn412cjsn2Quc8.webp?r=21e " alt="CTRL">
+              
+            </div>
+            <div class="movie-card">
+                <div class="movie-rank">5</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABYtQQuyzfpH21gbzUiC47JPBO9fctekBa91MAuaqBkJX2hq5AgldT2woVYvCfeJXURRTmZRK-nEXI2W4yyEDtLTe4fzrzyXx_kNLFCoxHcjNTWIfW-VktlZZl6wGsbL4EYFYmg2-H93j4GnJLAFUvRUfEDB3a3dAHDCvEgqkIMDRBzwI4Ggp3PQvNd-7XSbl5e8NoOY0OWJ7UFGMEnLrUlUj1r5EPNjTkk52iU3SMPdnCFX7WjFsujHobj_ljq6YIqSFOgZtCuiaXx4gTwqZm4hSGkHCbQWe7rg2WfMFjr15ua7ZpEPSTCJovK-zYgxX3hwvapFTIv4p1YCnWWtV66M9vXD1uwhDm5anxVn412cjsn2Quc8.webp?r=21e" alt="Sector 36">
+              
+            </div>
+            <div class="movie-card">
+                <div class="movie-rank">6</div>
+                <img src="https://occ-0-3082-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABfLk0yD03_b7ZgzvbX98-s5mqI5dzBYCZ73Y2pfyB3K6Lj2f5XQXMzhSTCtZNTYM_893Fb6beyPZ7bZ3rXvmTsQkr8gMhm8MEM6Oo7YQO-mRNxJMNd30Tl11enxphJTOidORqLy0mtQItmCgqyaDzh6-EYzzxl4ibOKEWL_pi3VXaWuSL70xvKVp-Tl2S94MyYT7AsNqbMt5XnXsQJm_HFh5-C3DDPLKXFor5a0Ru_MW6AD5G7spOHTYPFwXW2GjkyIRfH_c9Eos8dzzLtMfm7wnvien.webp?r=25e " alt="The Finale">
+        
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="resontile" style="background-color: black; padding: 50px; padding-top: 0;">
+        <div class="headingr" style="color: white; font-size: 24px; padding: 10px;">More reasons to join</div>
+        <div class="reasonbox">
+            <div class="f1">
+                <p class="reason-title">Enjoy on your TV</p>
+                <p class="reason-text">Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+                <p class="image-container">
+                    <img src="images/imac.png" class="reason-image">
+                </p>
+            </div>
+    
+            <div class="f1">
+                <p class="reason-title">Download your shows to watch offline</p>
+                <p class="reason-text">Save your favourites easily and always have something to watch.</p>
+                <p class="image-container">
+                    <img src="images/imac.png" class="reason-image">
+                </p>
+            </div>
+    
+            <div class="f1">
+                <p class="reason-title">Watch everywhere</p>
+                <p class="reason-text">Stream unlimited movies and TV shows on your phone, tablet, laptop and TV.</p>
+                <p class="image-container">
+                    <img src="images/imac.png" class="reason-image">
+                </p>
+            </div>
+    
+            <div class="f1">
+                <p class="reason-title">Create profiles for kids</p>
+                <p class="reason-text">Send kids on adventures with their favourite characters in a space made just for them — free with your membership.</p>
+                <p class="image-container">
+                    <img src="images/imac.png" class="reason-image">
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>What is Netflix? <span class="toggle">+</span></h3>
+            <p class="answer">Netflix is a streaming service that allows you to watch a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How much does Netflix cost? <span class="toggle">+</span></h3>
+            <p class="answer">Netflix offers several subscription plans to fit your budget, ranging from basic to premium options. Prices may vary by region.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Where can I watch? <span class="toggle">+</span></h3>
+            <p class="answer">You can watch Netflix on various devices including smart TVs, game consoles, streaming media players, set-top boxes, smartphones, and tablets. You can also watch on your laptop or desktop computer via the Netflix website.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I cancel? <span class="toggle">+</span></h3>
+            <p class="answer">Netflix is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What can I watch on Netflix? <span class="toggle">+</span></h3>
+            <p class="answer">Netflix offers a vast library of movies, TV shows, documentaries, and original content across various genres to suit all tastes.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is Netflix good for kids? <span class="toggle">+</span></h3>
+            <p class="answer">Yes, Netflix has a dedicated section for kids that features child-friendly content, along with parental controls to help you manage what your children can watch.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-top">
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+            <div class="email-subscribe">
+                <input type="email" placeholder="Email address" />
+                <button>Get Started</button>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div>
+                <a href="#">FAQ</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Privacy</a>
+                <a href="#">Speed Test</a>
+            </div>
+            <div>
+                <a href="#">Help Centre</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Account</a>
+                <a href="#">Ways to Watch</a>
+                <a href="#">Corporate Information</a>
+                <a href="#">Only on Netflix</a>
+            </div>
+            <div>
+                <a href="#">Media Centre</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="language-select">
+                <button>🌐 English</button>
+            </div>
+            <p>Netflix India</p>
+        </div>
+    </footer>
+    
+    
+
+
+
+    <style>
+        .resontile {
+            padding: 50px;
+            padding-top: 0;
+        }
+    
+        .reasonbox {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Evenly distributes space */
+        }
+    
+        .f1 {
+            background-color: #0e415f;
+            flex: 1 1 22%; /* Allows for slight margins and keeps 4 in a row */
+            border-radius: 10px;
+            margin: 10px; /* Added margin for spacing */
+            padding: 20px;
+            box-sizing: border-box;
+            min-width: 200px; /* Ensures the boxes do not get too small */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            justify-content: space-between; /* Evenly distributes space between elements */
+        }
+    
+        .reason-title {
+            color: white;
+            font-size: 2rem;
+            padding-left: 15px;
+        }
+    
+        .reason-text {
+            color: white;
+            font-size: 1rem;
+            padding-left: 15px;
+        }
+    
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: auto; /* Pushes the icon to the bottom */
+        }
+    
+        .reason-image {
+            height: 10vh;
+        }
+    
+        @media (max-width: 1200px) {
+            .f1 {
+                flex: 1 1 45%; /* Two tiles per row on medium-large screens */
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .f1 {
+                flex: 1 1 100%; /* One tile per row on smaller screens */
+            }
+    
+            .reason-title {
+                font-size: 1.8rem;
+            }
+    
+            .reason-text {
+                font-size: 0.9rem;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .f1 {
+                flex: 1 1 100%; /* One tile per row on very small screens */
+            }
+    
+            .reason-title {
+                font-size: 1.5rem;
+            }
+    
+            .reason-text {
+                font-size: 0.8rem;
+            }
+    
+            .reason-image {
+                height: 8vh;
+            }
+        }
+
+        #faq {
+    background-color: #000; /* Black background */
+    padding: 20px;
+    border-radius: 8px;
+
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #fff; /* White text color */
+}
+
+#faq h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #fff; /* White text color for the header */
+}
+
+.faq-item {
+    border: 1px solid #444; /* Darker border for tiles */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative; /* To position the toggle button */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.faq-item:hover {
+    background-color: #222; /* Darker background on hover */
+}
+
+.faq-item h3 {
+    font-size: 18px;
+    color: white; /* Light blue color for questions */
+    cursor: pointer; /* Change cursor to pointer for better UX */
+    display: flex; /* Flex to align text and toggle */
+    justify-content: space-between; /* Space between title and toggle */
+    align-items: center; /* Center vertically */
+    margin: 0; /* Remove default margin */
+}
+
+.faq-item .toggle {
+    font-size: 20px; /* Font size for the toggle sign */
+    color: white; /* Color for the toggle sign */
+    transition: transform 0.3s; /* Smooth transition for toggle sign */
+}
+
+.faq-item .answer {
+    display: none; /* Hide answers by default */
+    font-size: 14px;
+    color: #ccc; /* Light gray color for answers */
+    margin-top: 10px; /* Space above answer */
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 40px;
+}
+
+.footer-top {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.footer-top p {
+    font-size: 1.2rem;
+}
+
+.email-subscribe {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.email-subscribe input {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 2px;
+}
+
+.email-subscribe button {
+    padding: 10px 20px;
+    background-color: #e50914;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.footer-links div {
+    flex: 1;
+}
+
+.footer-links a {
+    display: block;
+    margin: 5px 0;
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.language-select button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.language-select button:hover {
+    background-color: #555;
+}
+
+
+
+    </style>
+    
+    
+    
+</body>
+</html>
